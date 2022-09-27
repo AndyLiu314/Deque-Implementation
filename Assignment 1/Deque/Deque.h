@@ -36,9 +36,28 @@ class Deque
 
     void reserve( int newCapacity )
     {
-      if (newCapacity > theSize){
+      if (newCapacity > theCapacity){
         
         Object* newDeque = new Object[newCapacity];
+        int oldLength = theSize; 
+        cout<<"old length is: "<<oldLength<<endl;
+
+        int elementsaftertail = theCapacity-back;
+        int k = 0;
+        for (int i = back; i<theCapacity; i++){
+          newDeque[k] = objects[i];
+          k++;
+        }
+
+        int NDindex = k;
+        for (int m=0; m<k; m++){
+          newDeque[NDindex] = objects[m];
+          NDindex++;
+        }
+
+        front = 0;
+        back = oldLength;
+
 
         /* transfers the old elements to new array 
         must split the old array into 2 sections because there is a front and a back pointer
@@ -97,6 +116,21 @@ class Deque
 
     Object eject( )// Remove and return the object at the back 
     {
+      if (empty()){
+        cout<<"Deque is empty"<<endl;
+        return NULL;
+      }
+
+      theSize--;
+      Object temp = objects[back];
+
+      if (back < 1){
+        back = theCapacity-1;
+      } else {
+        back--;
+      }
+
+      return temp; 
         // Implement this 
     }
 

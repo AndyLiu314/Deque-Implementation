@@ -8,8 +8,8 @@ int main( )
     const int N = 20;
 
     Stack<int> v ; // Make an int stack 
-    v.display(); // print its contents
-    v.ddisplay(); // print its contents
+    //v.display(); // print its contents
+    //v.ddisplay(); // print its contents
     
     // Push N ints onto the stack 
     for( int i = 0 ; i < N; ++i )

@@ -94,12 +94,13 @@ class Deque
     void jump( const Object & x )// Insert a new object at the front 
     {
         if( theSize == theCapacity ) reserve( 2 * theCapacity + 1 );
-        objects[front] = x;
         if (front<1){
           front = theCapacity- 1;
+          objects[front] = x;
           theSize++;
         } else {
           front--;
+          objects[front] = x;
           theSize++;
         }
         
@@ -136,6 +137,13 @@ class Deque
 
     void display() const // print out the contents of the deque
     {
+        cout << "size=" << theSize << std::endl;
+
+        cout << "< " ;
+        for (int i =0; i<theCapacity; ++i){
+          cout<<i<<"="<<objects[i]<<", ";
+        }
+        cout<<" >"<<endl;
        // Implement this.  The output should be similar to that 
        // used in the Vector and Stack classes provided.
     }

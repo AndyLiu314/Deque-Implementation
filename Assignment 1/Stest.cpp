@@ -21,12 +21,12 @@ int main( )
     v.ddisplay(); // print its contents
 
     // pop twice and push a new element
-    cout << "first pop: " << v.pop() << endl ;
-    cout << "second pop: " << v.pop() << endl ;
+    //cout << "first pop: " << v.pop() << endl ;
+    //cout << "second pop: " << v.pop() << endl ;
     v.push(99);
 
-    v.display(); // print the contents
-    v.ddisplay(); // print its contents
+    //v.display(); // print the contents
+    //v.ddisplay(); // print its contents
     
     return 0;
 }

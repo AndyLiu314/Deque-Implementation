@@ -19,7 +19,23 @@ int main( )
     Deque<int> d;
     int i = 6;
     d.enqueue(i);
+    d.enqueue(i);
     d.jump(i);
     d.display(); 
+    //d.jump(i);
+    d.reserve(12); 
+    d.display(); 
+    d.jump(i);
+    d.jump(i);
+    d.enqueue(i);
+    
+    d.display(); 
+    d.jump(i);
+    d.jump(i);
+    d.enqueue(i);
+    d.display();
+    d.ddisplay();
+    d.clear();
+    d.display();
     return 0;
 }

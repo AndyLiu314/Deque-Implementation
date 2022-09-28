@@ -25,6 +25,7 @@ class Deque
 
     void clear( ){
         delete[] objects;
+        objects = new Object[ theCapacity ]; 
         theCapacity = 8;
         theSize = 0 ;
         front = 0 ; 
@@ -39,33 +40,28 @@ class Deque
       if (newCapacity > theCapacity){
         
         Object* newDeque = new Object[newCapacity];
-        int oldLength = theSize; 
-        cout<<"old length is: "<<oldLength<<endl;
-
-        int elementsaftertail = theCapacity-back;
-        int k = 0;
-        for (int i = back; i<theCapacity; i++){
-          newDeque[k] = objects[i];
-          k++;
+        if (front == 0){
+          for (int i = 0; i < theCapacity; i++) {
+            newDeque[i] = objects[i];
+          }
+          front = 0;
         }
 
-        int NDindex = k;
-        for (int m=0; m<k; m++){
-          newDeque[NDindex] = objects[m];
-          NDindex++;
+        else if (front>0){
+          int NDindex = 0;
+          for (int k = front; k<theCapacity; k++){
+            newDeque[NDindex] = objects[k]; 
+            NDindex++;
+          }
+
+          for (int m = 0; m < back; m++){
+            newDeque[NDindex] = objects[m]; 
+            NDindex++;
+          }
+
+          front = 0;
+          back = NDindex;
         }
-
-        front = 0;
-        back = oldLength;
-
-
-        /* transfers the old elements to new array 
-        must split the old array into 2 sections because there is a front and a back pointer
-        for ()
-        {
-
-        } 
-        */ 
        
         Object* temp = objects; 
         objects = newDeque;
@@ -94,6 +90,13 @@ class Deque
     void jump( const Object & x )// Insert a new object at the front 
     {
         if( theSize == theCapacity ) reserve( 2 * theCapacity + 1 );
+
+        if (theSize==0){
+          objects[front] = x;
+          front = theCapacity - 1;
+          back++;
+          theSize++;
+        }
         if (front<1){
           front = theCapacity- 1;
           objects[front] = x;
@@ -107,14 +110,18 @@ class Deque
         // Implement this 
     }
 
+
+    //dont work
     Object dequeue( )// Remove and return the object at the front 
     {
         theSize--;
         Object temp = objects[front];
+        //objects[front] = 0;
         front = (front+1) % theCapacity ;
         return temp ;
     }
 
+    //dont work
     Object eject( )// Remove and return the object at the back 
     {
       if (empty()){
@@ -127,8 +134,14 @@ class Deque
 
       if (back < 1){
         back = theCapacity-1;
+        //objects[back] = 0;
+        Object temp = objects[back];
+        //objects[back] = NULL;
       } else {
         back--;
+        //objects[back] = 0;
+        Object temp = objects[back];
+        //objects[back] = NULL;
       }
 
       return temp; 
@@ -152,6 +165,13 @@ class Deque
     // array, and relevant variables, for debugging or verifying 
     // correctness. 
     {
+      cout << "capacity=" << theCapacity << ", size=" << theSize; 
+      cout << ", front index=" << front << ", back index=" << back << std::endl;
+      cout << "[ " ;
+      for( int i = 0; i < theCapacity ; ++i ){
+         cout << i << "=" << objects[i] << ", " ;
+      }
+      cout << " ]" << endl;
         // Implement this.  The output should be in the style used in 
         // Vector and Stack classes provided.
     }

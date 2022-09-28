@@ -110,40 +110,37 @@ class Deque
         // Implement this 
     }
 
-
-    //dont work
     Object dequeue( )// Remove and return the object at the front 
     {
         theSize--;
         Object temp = objects[front];
+        objects[front] = 0;
         front = (front+1) % theCapacity ;
         return temp ;
     }
 
-    //dont work
     Object eject( )// Remove and return the object at the back 
     {
+      /*
       if (empty()){
         cout<<"Deque is empty"<<endl;
-        return NULL;
-      }
-
-      theSize--;
-      Object temp = objects[back];
+        return;
+      }*/ 
 
       if (back < 1){
+        Object temp = objects[back];
         back = theCapacity-1;
-        //objects[back] = 0;
-        Object temp = objects[back];
-        //objects[back] = NULL;
-      } else {
-        back--;
-        //objects[back] = 0;
-        Object temp = objects[back];
-        //objects[back] = NULL;
-      }
+        objects[back] = 0;
+        theSize--;
+        return temp; 
 
-      return temp; 
+      } else {
+        Object temp = objects[back];
+        back--;
+        objects[back] = 0;
+        theSize--;
+        return temp; 
+      }
         // Implement this 
     }
 

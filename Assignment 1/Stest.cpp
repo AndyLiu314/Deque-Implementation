@@ -14,7 +14,7 @@ int main( )
     // Push N ints onto the stack 
     for( int i = 0 ; i < N; ++i )
     {
-        v.push( i+5 );
+        //v.push( i+5 );
     }
 
     v.display(); // print the contents

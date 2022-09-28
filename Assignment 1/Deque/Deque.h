@@ -23,6 +23,18 @@ class Deque
     bool empty( ) const  { return size( ) == 0; }
     int size( ) const { return theSize; }
 
+    Object & operator[]( int index )
+    {
+        int num = (index+front)%theCapacity;
+        return objects[ num ];
+    }
+
+    const Object & operator[]( int index ) const
+    {
+        int num = (index+front)%theCapacity;
+        return objects[ index ];
+    }
+
     void clear( ){
         delete[] objects;
         objects = new Object[ theCapacity ]; 

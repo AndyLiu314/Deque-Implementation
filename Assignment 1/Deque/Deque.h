@@ -116,7 +116,6 @@ class Deque
     {
         theSize--;
         Object temp = objects[front];
-        //objects[front] = 0;
         front = (front+1) % theCapacity ;
         return temp ;
     }

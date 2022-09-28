@@ -20,7 +20,9 @@ int main( )
     int i = 6;
     d.enqueue(i);
     d.enqueue(i);
+    d.eject();
     d.jump(i);
+    d.dequeue();
     d.display(); 
     //d.jump(i);
     d.reserve(12); 

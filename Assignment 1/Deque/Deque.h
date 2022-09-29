@@ -36,7 +36,6 @@ class Deque
     }
 
     void clear( ){
-        delete[] objects;
         objects = new Object[ theCapacity ]; 
         theCapacity = 8;
         theSize = 0 ;
@@ -50,7 +49,6 @@ class Deque
     void reserve( int newCapacity )
     {
       if (newCapacity > theCapacity){
-        
         Object* newDeque = new Object[newCapacity];
         if (front == 0){
           for (int i = 0; i < theCapacity; i++) {
@@ -84,9 +82,6 @@ class Deque
       } else {
         cout<<"New capacity must be greater than original capacity"<< endl;
       }
-        // change the capacity to newCapacity 
-        // (provided it is larger than the current size)
-        // 
         // Implement this...
     }
 

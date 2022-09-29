@@ -158,13 +158,13 @@ class Deque
 
     void display() const // print out the contents of the deque
     {
-        cout << "size=" << theSize << std::endl;
+        cout << "Size = " << theSize << std::endl;
 
         cout << "< " ;
         for (int i =0; i<theCapacity; ++i){
           cout<<i<<"="<<objects[i]<<", ";
         }
-        cout<<" >"<<endl;
+        cout<<">"<<endl;
        // Implement this.  The output should be similar to that 
        // used in the Vector and Stack classes provided.
     }
@@ -173,13 +173,13 @@ class Deque
     // array, and relevant variables, for debugging or verifying 
     // correctness. 
     {
-      cout << "capacity=" << theCapacity << ", size=" << theSize; 
-      cout << ", front index=" << front << ", back index=" << back << std::endl;
+      cout << "Capacity = " << theCapacity << ", Size = " << theSize; 
+      cout << ", Front Index = " << front << ", Back Index = " << back << std::endl;
       cout << "[ " ;
       for( int i = 0; i < theCapacity ; ++i ){
          cout << i << "=" << objects[i] << ", " ;
       }
-      cout << " ]" << endl;
+      cout << "]" << endl;
         // Implement this.  The output should be in the style used in 
         // Vector and Stack classes provided.
     }

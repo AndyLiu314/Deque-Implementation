@@ -57,6 +57,7 @@ class Deque
             newDeque[i] = objects[i];
           }
           front = 0;
+          back = theCapacity;
         }
 
         else if (front>0){

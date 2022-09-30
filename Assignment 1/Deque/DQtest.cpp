@@ -181,6 +181,6 @@ int main( )
     test_eject_dequeue();
 
     //this will fill the entire terminal so run it last
-    //large_deque();
+    large_deque();
     return 0;
 }

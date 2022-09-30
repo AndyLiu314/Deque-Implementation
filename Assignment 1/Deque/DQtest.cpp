@@ -161,7 +161,6 @@ void large_deque () {
     for (int i = 0; i<size+1; i++){
         d.jump(i*2);
     }
-    //d.ddisplay();
     d.jump(1); 
     d.ddisplay();
     cout<<endl;
@@ -180,6 +179,8 @@ int main( )
     test_reserve_clear(); 
     test_enqueue_jump();
     test_eject_dequeue();
-    large_deque();
+
+    //this will fill the entire terminal so run it last
+    //large_deque();
     return 0;
 }

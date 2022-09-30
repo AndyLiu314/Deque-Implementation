@@ -50,14 +50,19 @@ class Deque
     {
       if (newCapacity > theCapacity){
         Object* newDeque = new Object[newCapacity];
+
+        //if the front header has not been moved objects can be copied left to right into the new deque
         if (front == 0){
-          for (int i = 0; i < theCapacity; i++) {
+          
+          for (int i = 0; i < theSize; i++) {
             newDeque[i] = objects[i];
           }
           front = 0;
-          back = theCapacity;
+          back = theSize;
         }
 
+        //otherwise, all elements that have been looped around will be copied into the new array first
+        //they will then be followed by the elements inserted from the back
         else if (front>0){
           int NDindex = 0;
           for (int k = front; k<theCapacity; k++){
@@ -104,8 +109,7 @@ class Deque
           front = theCapacity - 1;
           back++;
           theSize++;
-        }
-        if (front<1){
+        } else if (front<1){
           front = theCapacity- 1;
           objects[front] = x;
           theSize++;
@@ -129,17 +133,14 @@ class Deque
 
     Object eject( )// Remove and return the object at the back 
     {
-      /*
-      if (empty()){
-        cout<<"Deque is empty"<<endl;
-        return;
-      }*/ 
-
       if (back < 1){
         Object temp = objects[back];
         back = theCapacity-1;
         objects[back] = 0;
         theSize--;
+        if (theSize<0){
+          theSize = 0;
+        }
         return temp; 
 
       } else {
@@ -147,6 +148,9 @@ class Deque
         back--;
         objects[back] = 0;
         theSize--;
+        if (theSize<0){
+          theSize = 0;
+        }
         return temp; 
       }
         // Implement this 

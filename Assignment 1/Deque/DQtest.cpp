@@ -8,23 +8,25 @@ void test_reserve_clear(){
     int e = 12;
 
     //increase capacity to 13
-    cout << "Increasing Deque Size By: " << i << "\nExpected Output:\nsize=0" << endl; 
-    cout << "< 0=0, 1=0, 2=0, 3=0, 4=0, 5=0, 6=0, 7=0, 8=0, 9=0, 10=0, 11=0, 12=0, >" << endl;
+    cout << "Increasing Deque Size By: " << i << "\nExpected Output:" << endl; 
+    cout << "Capacity = 13, Size = 0, Front Index = 0, Back Index = 0" << endl;
+    cout << "[ 0=0, 1=0, 2=0, 3=0, 4=0, 5=0, 6=0, 7=0, 8=0, 9=0, 10=0, 11=0, 12=0, ]" << endl;
     d.reserve(i); 
     cout << endl;
 
     cout << "Actual Output:" << endl;
-    d.display(); 
+    d.ddisplay(); 
     cout << endl;
 
     cout << "Attempting to Decrease Size By: " << e << "\nExpected Output:" << endl; 
-    cout<<"New capacity must be greater than original capacity\nsize=0"<< endl;
-    cout << "< 0=0, 1=0, 2=0, 3=0, 4=0, 5=0, 6=0, 7=0, 8=0, 9=0, 10=0, 11=0, 12=0, >" << endl;
+    cout<<"New capacity must be greater than original capacity"<< endl;
+    cout << "Capacity = 13, Size = 0, Front Index = 0, Back Index = 0" << endl;
+    cout << "[ 0=0, 1=0, 2=0, 3=0, 4=0, 5=0, 6=0, 7=0, 8=0, 9=0, 10=0, 11=0, 12=0, ]" << endl;
     cout << endl;
 
     cout << "Actual Output:" << endl;
     d.reserve(e);
-    d.display(); 
+    d.ddisplay(); 
     cout << endl;
 
     cout << "Clearing Deque:\nExpected Output:" << endl; 
@@ -99,19 +101,85 @@ void test_enqueue_jump() {
 }
 
 void test_eject_dequeue () {
+    Deque<int> d;
+
+    //filling deque with random values
+    for (int i = 0; i < 5; i++){
+        d.enqueue(i*2+1);
+    }
+    d.jump(765);
+    d.jump(8);
+
+    cout << "The Original Deque:" << endl;
+    d.ddisplay();
+    cout << endl;
     
+
+    cout << "Eject 3 Elements from Deque, \nExpected Output:" << endl; 
+    cout << "Capacity = 8, Size = 4, Front Index = 6, Back Index = 2" << endl;
+    cout << "[ 0=1, 1=3, 2=0, 3=0, 4=0, 5=0, 6=8, 7=765, ]" << endl;
+    d.eject();
+    d.eject();
+    d.eject();
+    cout << endl;
+
+    cout << endl;
+
+    cout << "Actual Output:" << endl;
+    d.ddisplay();
+    cout << endl;
+
+    cout << "Dequeue 2 Elements from Deque, \nExpected Output:" << endl; 
+    cout << "Capacity = 8, Size = 2, Front Index = 0, Back Index = 2" << endl;
+    cout << "[ 0=1, 1=3, 2=0, 3=0, 4=0, 5=0, 6=0, 7=0, ]" << endl;
+    d.dequeue();
+    d.dequeue();
+    cout << endl;
+
+    cout << "Actual Output:" << endl;
+    d.ddisplay();
+    cout << endl;
+
+    cout << "Ejecting 2 Elements from Deque, Then Ejecting 2 Elements from Empty Deque\nExpected Output:" << endl; 
+    cout << "Capacity = 8, Size = 0, Front Index = 0, Back Index = 6" << endl;
+    cout << "[ 0=0, 1=0, 2=0, 3=0, 4=0, 5=0, 6=0, 7=0, ]" << endl;
+    d.eject();
+    d.eject();
+    d.eject();
+    d.eject();
+    cout << endl;
+
+    cout << "Actual Output:" << endl;
+    d.ddisplay();
+    cout << endl;
+}
+
+void large_deque () {
+    int size = 100000;
+    Deque<int> d;
+    d.reserve(size);
+    for (int i = 0; i<size+1; i++){
+        d.jump(i*2);
+    }
+    //d.ddisplay();
+    d.jump(1); 
+    d.ddisplay();
+    cout<<endl;
+
+    cout << "This is to ensure that the deque implementation can handle large deques" << endl;
+    cout << "The final element of the deque should be at index 200000 meaning the capacity is 200001" << endl;
+    cout << "Correct Output: Deque[200000] = 200000" << endl;
+    cout << "Correct Output: Deque[199999] = 1" << endl;
+    cout << "All other elements that can be seen on screen should equal 0" << endl;
+
 }
 
 int main( ) 
 {
-    //test_reserve_clear(); 
+    Deque<int> d; 
+    test_reserve_clear(); 
     test_enqueue_jump();
-    /*
-    Deque<int> d;
-    d.jump(3);
-    d.display();
-    Deque<int> v;
-    v.ddisplay();*/
-
+    test_eject_dequeue();
+    large_deque();
     return 0;
 }
